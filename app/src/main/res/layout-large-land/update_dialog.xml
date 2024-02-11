@@ -1,0 +1,68 @@
+<!--this is a layout used to tweak default system theme of a "modal" popup and declare -->
+<!--its elements-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="26dp"
+    android:background="@color/teal"
+    android:minWidth="400dp"
+    android:minHeight="250dp"
+
+    >
+
+    <!-- Header of the popup -->
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
+        android:text="@string/update_popup_header"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/light_teal"
+        android:visibility="visible"
+        android:scaleY="1.5"
+        android:scaleX="1.5"/>
+
+    <!-- Spinner indicator -->
+    <ProgressBar
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        android:layout_marginVertical="30dp"
+        android:indeterminateTint="@color/light_teal"
+        android:scaleY="2"
+        android:scaleX="2"/>
+
+    <!-- Results msg -->
+    <TextView
+        android:id="@+id/resultsMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:textColor="@color/warning_red"
+        android:text="@string/no_updates"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginBottom="30dp"
+        android:scaleY="1.5"
+        android:scaleX="1.5"/>
+
+    <!-- OK Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/okButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/OK"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_style_light"
+        android:textColor="@color/teal"
+        android:visibility="gone"
+        android:scaleY="1.5"
+        android:scaleX="1.5"/>
+
+</LinearLayout>

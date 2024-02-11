@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!--    declaring my colors besides the default boilerplate from ide-->
+    <color name="light_teal">#d0dddd</color>
+    <color name="teal">#125754</color>
+    <color name="dark_teal">#0d3d3b</color>
+    <color name="warning_red">#DC585E</color>
+</resources>

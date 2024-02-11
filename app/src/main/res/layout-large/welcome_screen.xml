@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/ic_launcher_background">
+
+    <!-- Check updates btn -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/updateCheckBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/check_for_updates_button_txt"
+        android:textColor="@color/light_teal"
+        android:layout_marginBottom="80dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_style"
+        android:paddingHorizontal="16dp"
+        android:onClick="onCheckForUpdatesButtonClick"
+        android:scaleY="1.5"
+        android:scaleX="1.5"/>
+
+    <!-- Exit btn -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/exitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/EXIT"
+        android:textColor="@color/warning_red"
+        android:layout_below="@id/updateCheckBtn"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_style"
+        android:paddingHorizontal="16dp"
+        android:onClick="onExitButtonClick"
+        android:scaleY="1.5"
+        android:scaleX="1.5"/>
+
+</RelativeLayout>

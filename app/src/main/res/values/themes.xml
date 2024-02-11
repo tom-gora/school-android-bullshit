@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.My_Splashscreen_app" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">#ff000000</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:dialogCornerRadius">20dp</item>
+    </style>
+
+    <style name="Theme.My_Splashscreen_app" parent="Base.Theme.My_Splashscreen_app" />
+</resources>
