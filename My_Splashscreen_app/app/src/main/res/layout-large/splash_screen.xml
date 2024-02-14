@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        android:text="6"
+        android:text="@string/initial_splash_duration"
         android:textColor="@color/light_teal"
         android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="parent"

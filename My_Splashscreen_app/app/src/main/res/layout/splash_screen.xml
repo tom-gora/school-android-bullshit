@@ -55,15 +55,14 @@
         app:layout_constraintTop_toBottomOf="@+id/welcomeText"
          />
 
-    <!--    Countdown text
-    set up to 6 due to delay to skip the first second -->
+    <!--    Countdown text -->
     <TextView
         android:id="@+id/countdownTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        android:text="6"
+        android:text="@string/initial_splash_duration"
         android:textColor="@color/light_teal"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

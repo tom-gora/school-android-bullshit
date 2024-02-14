@@ -14,14 +14,19 @@ import androidx.core.content.ContextCompat;
 
 public class WelcomeScreenActivity extends AppCompatActivity {
 
-    private static final long UPDATE_CHECK_DURATION = 5000; // 5 seconds
+    private static final long CHECK_DURATION = 5000; // 5 seconds delay for mock check
 
-    private Dialog updateDialog; // Declare the dialog as a class variable
+    private Dialog updateDialog; // init update dialog
+    private Dialog networkDialog; // init update dialog
 
-    // Method to handle Check for Updates button click
+    // Updates check handler
     public void onCheckForUpdatesButtonClick(View view) {
-        // Initialize and display the custom dialog for update check
         showUpdateDialog();
+    }
+
+    // Network check handler
+    public void onCheckForNetworkButtonClick(View view) {
+        showNetworkDialog();
     }
 
     @Override
@@ -33,36 +38,33 @@ public class WelcomeScreenActivity extends AppCompatActivity {
     }
 
 
-
-
-    // Method to handle Exit button click
+    // Exit button handler
     public void onExitButtonClick(View view) {
-        // Finish the activity to exit the app
         finish();
     }
 
     private void showUpdateDialog() {
-        // Initialize the custom dialog
+        // Init dialog
         updateDialog = new Dialog(this);
         updateDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         updateDialog.setContentView(R.layout.update_dialog);
 
-        // Find views in the dialog layout
+        // Init needed view components
         ProgressBar spinner = updateDialog.findViewById(R.id.spinner);
         TextView updateDialogTitle = updateDialog.findViewById(R.id.dialogTitle);
         TextView updateDialogResult = updateDialog.findViewById(R.id.resultsMsg);
         Button dismissUpdatesDialogBtn = updateDialog.findViewById(R.id.okButton);
 
-        // Show spinner initially
+        // Show spinner
         spinner.setVisibility(ProgressBar.VISIBLE);
         updateDialogResult.setVisibility(TextView.GONE);
         dismissUpdatesDialogBtn.setVisibility(View.GONE); // Hide the dismiss button initially
 
-        // Simulate checking for updates
-        new CountDownTimer(UPDATE_CHECK_DURATION, 1000) {
+        // Simulate checks
+        new CountDownTimer(CHECK_DURATION, 1000) {
             @Override
-            public void onTick(long millisUntilFinished) {
-                // Not needed for update check
+            public void onTick(long timeTillFinish) {
+                // Not needed for do anything here because its mock
             }
 
             @Override
@@ -77,12 +79,59 @@ public class WelcomeScreenActivity extends AppCompatActivity {
 
         }.start();
 
-        // Set click listener to dismiss the dialog when the button is clicked
+        // Set listener to dismiss dialog
         dismissUpdatesDialogBtn.setOnClickListener(v -> {
             updateDialog.dismiss();
         });
 
         // Show the dialog
         updateDialog.show();
+
+    }
+
+    private void showNetworkDialog() {
+        // Init dialog
+        networkDialog = new Dialog(this);
+        networkDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        networkDialog.setContentView(R.layout.network_dialog);
+
+        // Init needed view components
+        ProgressBar spinner = networkDialog.findViewById(R.id.spinner);
+        TextView updateDialogTitle = networkDialog.findViewById(R.id.dialogTitle);
+        TextView updateDialogResult = networkDialog.findViewById(R.id.resultsMsg);
+        Button dismissUpdatesDialogBtn = networkDialog.findViewById(R.id.okButton);
+
+        // Show spinner
+        spinner.setVisibility(ProgressBar.VISIBLE);
+        updateDialogResult.setVisibility(TextView.GONE);
+        dismissUpdatesDialogBtn.setVisibility(View.GONE); // Hide the dismiss button initially
+
+        // Simulate checks
+        new CountDownTimer(CHECK_DURATION, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Not needed for do anything here because its mock
+            }
+
+            @Override
+            public void onFinish() {
+                // Fake result: connect
+                spinner.setVisibility(ProgressBar.GONE);
+                updateDialogResult.setVisibility(TextView.VISIBLE);
+                updateDialogTitle.setText("Status confirmed");
+                updateDialogResult.setText("You are connected");
+                dismissUpdatesDialogBtn.setVisibility(View.VISIBLE); // Show the dismiss button
+            }
+
+        }.start();
+
+        // Set listener to dismiss dialog
+        dismissUpdatesDialogBtn.setOnClickListener(v -> {
+            networkDialog.dismiss();
+        });
+
+        // Show the dialog
+        networkDialog.show();
+
     }
 }

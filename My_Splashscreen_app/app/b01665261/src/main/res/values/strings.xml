@@ -1,0 +1,18 @@
+<resources>
+<!--    strings as exported by IDE-->
+    <string name="app_name">Tom\'s SplashScreen</string>
+    <string name="welcome_text">Welcome to my first app!</string>
+    <string name="copyright_or_something">Tom Gora - University of the West of Scotland 2024</string>
+    <string name="logo_alt_desc">App logo</string>
+<!--    same as declaration in manifest and gradle build config-->
+    <string name="version">v1.0.3 ALPHA</string>
+    <string name="update_popup_header">Checking for updates...</string>
+    <string name="no_updates">No updates available.</string>
+    <string name="OK">OK</string>
+    <string name="check_for_updates_button_txt">Check for updates</string>
+    <string name="EXIT">Exit</string>
+    <string name="initial_splash_duration">3</string>
+    <string name="check_network_btn">Check the network connection</string>
+    <string name="testing_connection">Testing connection...</string>
+    <string name="connected">You are connected</string>
+</resources>

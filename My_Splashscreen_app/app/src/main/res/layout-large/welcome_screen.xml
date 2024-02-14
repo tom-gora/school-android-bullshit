@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,13 +11,29 @@
         android:layout_height="wrap_content"
         android:text="@string/check_for_updates_button_txt"
         android:textColor="@color/light_teal"
-        android:layout_marginBottom="80dp"
+        android:layout_marginTop="36dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_style"
         android:paddingHorizontal="16dp"
         android:onClick="onCheckForUpdatesButtonClick"
-        android:scaleY="1.5"
-        android:scaleX="1.5"/>
+        android:scaleY="1.6"
+        android:scaleX="1.6"/>
+
+    <!-- Check internet access btn -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/networkCheckBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/testing_connection"
+        android:textColor="@color/light_teal"
+        android:layout_below="@id/updateCheckBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/button_style"
+        android:paddingHorizontal="16dp"
+        android:onClick="onCheckForNetworkButtonClick"
+        android:scaleY="1.6"
+        android:scaleX="1.6"/>
 
     <!-- Exit btn -->
     <androidx.appcompat.widget.AppCompatButton
@@ -27,12 +42,12 @@
         android:layout_height="wrap_content"
         android:text="@string/EXIT"
         android:textColor="@color/warning_red"
-        android:layout_below="@id/updateCheckBtn"
+        android:layout_below="@id/networkCheckBtn"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
         android:background="@drawable/button_style"
         android:paddingHorizontal="16dp"
         android:onClick="onExitButtonClick"
-        android:scaleY="1.5"
-        android:scaleX="1.5"/>
-
+        android:scaleY="1.6"
+        android:scaleX="1.6"/>
 </RelativeLayout>

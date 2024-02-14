@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_launcher_background"
     android:gravity="center">
 
     <!-- Check updates btn -->
@@ -9,24 +9,45 @@
         android:id="@+id/updateCheckBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/check_for_updates_button_txt"
-        android:layout_marginBottom="40dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_style"
+        android:onClick="onCheckForUpdatesButtonClick"
         android:paddingHorizontal="16dp"
-        android:onClick="onCheckForUpdatesButtonClick" />
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:text="@string/check_for_updates_button_txt"
+        android:textColor="@color/light_teal" />
+
+    <!-- Check internet access btn -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/networkCheckBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/updateCheckBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/button_style"
+        android:onClick="onCheckForNetworkButtonClick"
+        android:paddingHorizontal="16dp"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:text="@string/testing_connection"
+        android:textColor="@color/light_teal" />
 
     <!-- Exit btn -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/exitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/EXIT"
-        android:textColor="@color/warning_red"
-        android:layout_below="@id/updateCheckBtn"
+        android:layout_below="@id/networkCheckBtn"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
         android:background="@drawable/button_style"
+        android:onClick="onExitButtonClick"
         android:paddingHorizontal="16dp"
-        android:onClick="onExitButtonClick" />
+        android:scaleX="1.2"
+        android:scaleY="1.2"
+        android:text="@string/EXIT"
+        android:textColor="@color/warning_red" />
 
 </RelativeLayout>

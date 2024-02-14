@@ -2,20 +2,25 @@
 
 package com.example.my_splashscreen_app;
 
-        import android.annotation.SuppressLint;
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.os.CountDownTimer;
-        import android.view.View;
-        import android.widget.TextView;
-        import androidx.appcompat.app.AppCompatActivity;
-        import androidx.core.content.ContextCompat;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashScreenActivity extends AppCompatActivity {
 
     // Duration of the splash screen in milliseconds
-    private static final int SPLASH_DURATION = 6000; // 6 seconds
+    //  set to 4 seconds to account for a startup delay
+    // result: 3 - 2 - 1 is clearly displayed on full launch
+    // this is done purely for clearer user experience
+    // I am aware of this being a second longer than expected
+    private static final int SPLASH_DURATION = 4000;
 
     private TextView countdownTextView;
     private CountDownTimer countDownTimer;
@@ -53,7 +58,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                // Do something when the countdown finishes, if needed
+                // Not needed for do anything here because its mock
             }
         };
         countDownTimer.start();
@@ -62,7 +67,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Cancel the countdown timer to avoid memory leaks
+        // unmounting the component as react ppl would say
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
