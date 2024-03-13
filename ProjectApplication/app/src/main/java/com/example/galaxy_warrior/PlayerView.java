@@ -3,17 +3,16 @@ package com.example.galaxy_warrior;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
+
 import java.util.ArrayList;
 import java.util.List;
-
 class PlayerView extends View {
     private int bulletSpeed = 10;
     private List<Bullet> bullets = new ArrayList<>(); // List to store bullets
     private final Player player;
-
     public PlayerView(Context context, int screenX, int screenY, int size) {
         super(context);
-        player = new Player(getResources(),screenY, screenX, size);
+        player = new Player(getResources(), screenY, screenX, size);
     }
     @Override
     protected void onDraw(Canvas canvas) {
@@ -29,7 +28,7 @@ class PlayerView extends View {
     // Method to shoot a bullet
     public void shoot() {
         // Create a new bullet at the player's position + some magic numbers to adjust position by hand
-        Bullet bullet = new Bullet(getResources(),player.getX()+70, player.getY()+20, bulletSpeed);
+        Bullet bullet = new Bullet(getResources(), player.getX() + 70, player.getY() + 20, bulletSpeed);
         bullets.add(bullet); // Add the bullet to the list
     }
     // Method to update the bullets' positions
@@ -39,7 +38,7 @@ class PlayerView extends View {
             Bullet bullet = bullets.get(i);
             bullet.update();
             // Remove the bullet if it goes off the top edge of the screen
-            if (bullet.getY() <= 0) {
+            if (bullet.getY() <= 0 || !bullet.isAlive()) {
                 bullets.remove(i);
             }
         }
@@ -50,16 +49,14 @@ class PlayerView extends View {
         for (int i = bullets.size() - 1; i >= 0; i--) {
             Bullet bullet = bullets.get(i);
             bullet.draw(canvas);
-
             // Tossing bullets away for the garbage collector to handle from this method as well.
             // Not necessary but doing it for good measure.
             // Would not appreciate a memory clog in a real game.
             if (bullet.getY() <= 0) {
-                bullets.remove(i);
+                bullets.remove(bullet);
                 i--; // Adjust the loop counter to account for the removed bullet
             }
         }
-
     }
     public List<Bullet> getBullets() {
         return bullets;

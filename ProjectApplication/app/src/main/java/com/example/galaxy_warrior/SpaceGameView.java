@@ -45,6 +45,8 @@ public class SpaceGameView extends SurfaceView implements Runnable {
     // var that will store calculated enemy rows count based of provided total enemy count
     private double rowCount;
     //
+    // ------------- INSTANTIATE COLLISION ENGINE -------------------------------------------------
+    private CollisionEngine collisionEngine;
     // -------------- DECLARE BOX FOR TOUCH CONTROLS ----------------------------------------------
     private final ControlBoxView controlBox;
     private final Rect controlBoxBounds;
@@ -59,7 +61,7 @@ public class SpaceGameView extends SurfaceView implements Runnable {
     // -------------- ADJUSTABLE CONFIGURATION VARS -----------------------------------------------
     private final float bgScrollSpeed = 5.0f;
     private final int shipSize = 150;
-    private final int enemyCount = 22;
+    private final int enemyCount = 27;
     private final int enemiesPerRow = 6;
     private final int enemyGridOffsetFromTop = 50;
     private int bulletDensityTimeOffset = 200;
@@ -83,6 +85,7 @@ public class SpaceGameView extends SurfaceView implements Runnable {
         this.controlBox = new ControlBoxView(context, screenX, screenY, this);
         this.controlBoxBounds = controlBox.bounds;
         this.enemyRows = this.prepEnemyRows();
+        this.collisionEngine = new CollisionEngine(enemyRows, playerView, getResources());
         initLevel(context);
     }
     private void initLevel(Context context) {
@@ -105,6 +108,8 @@ public class SpaceGameView extends SurfaceView implements Runnable {
         scrollBackground();
         playerView.updateBullets();
         playerView.drawBullets(canvas);
+        if (collisionEngine.detectHitOnEnemy()) score ++;
+
     }
     public void draw() {
         if (ourHolder.getSurface().isValid()) {

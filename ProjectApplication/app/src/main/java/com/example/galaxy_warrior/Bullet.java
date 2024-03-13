@@ -10,9 +10,11 @@ import android.graphics.Rect;
 public class Bullet {
     private final float x;
     private float y;
-    private float speed; // Speed of the bullet
+    private float speed;
+    private boolean isAlive = true;
     private Paint paint;
     private Bitmap laserSprite;
+    private Rect targetRect;
     // Constructor
     public Bullet(Resources res, float x, float y, float speed) {
         this.x = x;
@@ -28,11 +30,20 @@ public class Bullet {
     // Draw method to draw the bullet on the canvas
     public void draw(Canvas canvas) {
         Rect spriteSourceRect = new Rect(0, 0, laserSprite.getWidth(), laserSprite.getHeight());
-        Rect targetRect = new Rect(Math.round(x - 20), Math.round(y - 60), Math.round(x + 20), Math.round(y));
+        targetRect = new Rect(Math.round(x - 20), Math.round(y - 60), Math.round(x + 20), Math.round(y));
         canvas.drawBitmap(laserSprite, spriteSourceRect, targetRect, paint);
     }
     // Getter method to get the Y position of the bullet
     public float getY() {
         return y;
+    }
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+    public Rect getTargetRect() {
+        return targetRect;
+    }
+    public boolean isAlive() {
+        return isAlive;
     }
 }

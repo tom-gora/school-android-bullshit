@@ -1,16 +1,25 @@
 package com.example.galaxy_warrior;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 //this clas just stores enemy objects in a row as a list and passes values used to draw
 //sprites down to the enemy objects where things get calculated and drawn
 // this is so game can independently draw rows depending on the needs and configuration at the moment
 public class EnemyRowView extends View {
     private final List<Enemy> enemies;
+    private int score = 0;
     public EnemyRowView(Context context, int screenX, int size, int enemyCountInRow, int offsetFromTop) {
         super(context);
         this.enemies = new ArrayList<>();
@@ -41,9 +50,33 @@ public class EnemyRowView extends View {
 //            this.log();
 //        }
         // Draw player on canvas
-        for (Enemy e : enemies) {
-            e.draw(canvas);
+        try {
+            for (Enemy e : enemies) {
+                e.draw(canvas);
+            }
+        } catch (ConcurrentModificationException ignored) {
         }
+    }
+//    public void destroyEnemy(Canvas canvas, Paint paint) {
+//        // Iterate through the list of bullets and update their positions
+//        for (int i = enemies.size() - 1; i >= 0; i--) {
+//            Enemy e = enemies.get(i);
+//            // Remove the bullet if it goes off the top edge of the screen
+//            if (!e.isAlive) {
+//                e.setEnemySprite(explosionSprite);
+//                int finalI = i;
+//                executor.schedule(() -> {
+//                    enemies.remove(finalI);
+//                    score ++;
+//                }, 100, TimeUnit.MILLISECONDS);
+//            }
+//        }
+//    }
+    public int getScore() {
+        return score;
+    }
+    public List<Enemy> getEnemies() {
+        return enemies;
     }
     // debug log just once from draw method
     //    boolean hasLogged = false;
