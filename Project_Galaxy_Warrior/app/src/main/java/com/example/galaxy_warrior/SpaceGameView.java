@@ -7,10 +7,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import androidx.core.content.res.ResourcesCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,7 @@ public class SpaceGameView extends SurfaceView implements Runnable {
     private final int screenY;
     private int score = 0;
     private int lives = 3;
+    private MenuOverlay menuOverlay;
     //
     // -------------- BACKGROUND ------------------------------------------------------------------
     // grabbing the background bitmap in two copies as one is animated following the other
@@ -58,13 +62,17 @@ public class SpaceGameView extends SurfaceView implements Runnable {
     private float touchX;
     private float touchY;
     //
+    // -------------- DECLARE OBJECTS TO STORE FONTS ----------------------------------------------
+    Typeface font_sevenSegments;
+    Typeface font_bungee;
+    //
     // -------------- ADJUSTABLE CONFIGURATION VARS -----------------------------------------------
     private final float bgScrollSpeed = 5.0f;
     private final int shipSize = 150;
-    private final int enemyCount = 27;
+    private final int enemyCount = 10;
     private final int enemiesPerRow = 6;
     private final int enemyGridOffsetFromTop = 50;
-    private int bulletDensityTimeOffset = 200;
+    private int bulletDensityTimeOffset = 300;
     //
     // --------------------------------------------------------------------------------------------
     // HELPER VAR USED WHEN I NEED TO OUTPUT A VALUE ON SCREEN TO EASILY INSPECT
@@ -86,6 +94,9 @@ public class SpaceGameView extends SurfaceView implements Runnable {
         this.controlBoxBounds = controlBox.bounds;
         this.enemyRows = this.prepEnemyRows();
         this.collisionEngine = new CollisionEngine(enemyRows, playerView, getResources());
+        this.font_sevenSegments = ResourcesCompat.getFont(context, R.font.seven_segment);
+        this.font_bungee = ResourcesCompat.getFont(context, R.font.bungee_regular);
+        this.menuOverlay = new MenuOverlay(context);
         initLevel(context);
     }
     private void initLevel(Context context) {
@@ -120,14 +131,16 @@ public class SpaceGameView extends SurfaceView implements Runnable {
             paint.setColor(Color.parseColor("#c44079"));
 //            paint.setFakeBoldText(true);
             paint.setTextSize(60);
+            paint.setTypeface(font_sevenSegments);
             canvas.drawText("Score: " + score, 40, screenY - 20, paint);
-            canvas.drawText("Lives: " + lives, screenX - 260, screenY - 20, paint);
+            canvas.drawText("Lives: " + lives, screenX - 230, screenY - 20, paint);
 //            canvas.drawText("newX: " + valueLoggerForTesting, 10, 80, paint);
             playerView.draw(canvas);
             controlBox.draw(canvas);
             for (EnemyRowView enemyRowView : enemyRows) {
                 enemyRowView.draw(canvas);
             }
+//            menuOverlay.draw(canvas);
             ourHolder.unlockCanvasAndPost(canvas);
         }
     }
@@ -186,6 +199,7 @@ public class SpaceGameView extends SurfaceView implements Runnable {
             }
             currentSpacing += rowSpacing;
             // last row may have a varying number of enemies calculated with mod
+            if (enemyCount == 0) return enemyRows;
             int enemyCountBottomRow = enemyCount % enemiesPerRow;
             // ana a quick check  because as noticed in testing if mod comes back as 0 then
             // we crash with division by zero error down the pipeline , so if it's 0 then just add to draw a full row, end of story

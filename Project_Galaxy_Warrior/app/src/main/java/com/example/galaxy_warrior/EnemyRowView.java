@@ -57,21 +57,7 @@ public class EnemyRowView extends View {
         } catch (ConcurrentModificationException ignored) {
         }
     }
-//    public void destroyEnemy(Canvas canvas, Paint paint) {
-//        // Iterate through the list of bullets and update their positions
-//        for (int i = enemies.size() - 1; i >= 0; i--) {
-//            Enemy e = enemies.get(i);
-//            // Remove the bullet if it goes off the top edge of the screen
-//            if (!e.isAlive) {
-//                e.setEnemySprite(explosionSprite);
-//                int finalI = i;
-//                executor.schedule(() -> {
-//                    enemies.remove(finalI);
-//                    score ++;
-//                }, 100, TimeUnit.MILLISECONDS);
-//            }
-//        }
-//    }
+
     public int getScore() {
         return score;
     }

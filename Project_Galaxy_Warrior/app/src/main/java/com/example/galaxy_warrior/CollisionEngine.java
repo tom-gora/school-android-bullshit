@@ -41,10 +41,15 @@ public class CollisionEngine {
                 while (ie.hasNext()) {
                     EnemyRowView row = ie.next();
                     for (Enemy enemy : row.getEnemies()) {
-                        enemyRect = enemy.getTargetRect();
+                        try {
+                            enemyRect = enemy.getTargetRect();
+                        } catch (NullPointerException e) {
+                            Log.d("Collision", "Enemy rect is null");
+                            return false;
+                        }
                         if (bulletRect != null && enemyRect != null) {
                             if (bullet.getTargetRect().intersect(enemy.getTargetRect())) {
-                                Log.d("Collision", "Collision detected!");
+//                                Log.d("Collision", "Collision detected!");
                                 bulletsList.remove(bullet);
                                 enemy.setEnemySprite(explosionSprite);
                                 executor.schedule(() -> {
