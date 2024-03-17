@@ -69,7 +69,7 @@ public class SpaceGameView extends SurfaceView implements Runnable {
     // -------------- ADJUSTABLE CONFIGURATION VARS -----------------------------------------------
     private final float bgScrollSpeed = 5.0f;
     private final int shipSize = 150;
-    private final int enemyCount = 10;
+    private final int enemyCount = 12;
     private final int enemiesPerRow = 6;
     private final int enemyGridOffsetFromTop = 50;
     private int bulletDensityTimeOffset = 300;
